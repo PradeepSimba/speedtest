@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.BarChart?>
+
+<?import javafx.geometry.Insets?>
+<fx:root xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         type="javafx.scene.control.Tab">
+    <VBox fx:id="mainContainer">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <VBox fx:id="progressContainer" visible="true"
+               AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+               AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+           <HBox>
+               <AnchorPane HBox.hgrow="ALWAYS">
+                   <Label layoutX="14.0" layoutY="0" text="Celkový postup: " AnchorPane.leftAnchor="0.0"
+                          AnchorPane.topAnchor="0.0"/>
+                   <ProgressBar fx:id="allProgressBar" layoutX="91.0" nodeOrientation="LEFT_TO_RIGHT"
+                                AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"/>
+               </AnchorPane>
+           </HBox>
+           <HBox>
+               <AnchorPane HBox.hgrow="ALWAYS">
+                   <Label layoutX="14.0" layoutY="0" text="Stahování dat: " AnchorPane.leftAnchor="0.0"
+                          AnchorPane.topAnchor="0.0"/>
+                   <ProgressBar fx:id="downloadProgressBar" layoutX="91.0" nodeOrientation="LEFT_TO_RIGHT"
+                                AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"/>
+               </AnchorPane>
+           </HBox>
+       </VBox>
+        <Accordion fx:id="resultContainer" visible="false">
+            <panes>
+                <TitledPane text="Výsledky stahování" expanded="true">
+                    <BarChart fx:id="downloadChart" VBox.vgrow="ALWAYS" prefHeight="240">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" label="ID stahování"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" label="Doba stažení [s]"/>
+                        </yAxis>
+                    </BarChart>
+                </TitledPane>
+                <TitledPane text="Výsledky latence" expanded="true">
+                    <BarChart fx:id="latencyChart" VBox.vgrow="ALWAYS" prefHeight="240">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" label="ID stahování"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" label="Latence [ms]"/>
+                        </yAxis>
+                    </BarChart>
+                </TitledPane>
+                <TitledPane text="Celkové hodnocení" expanded="true" fx:id="totalScore">
+                    <VBox>
+                        <Label fx:id="avargeSpeedLabel"/>
+                        <Label fx:id="bestSpeedLabel"/>
+                        <Label fx:id="avargeLatencyLabel"/>
+                    </VBox>
+                </TitledPane>
+            </panes>
+        </Accordion>
+    </VBox>
+</fx:root>
